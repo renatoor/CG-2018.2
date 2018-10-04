@@ -47,12 +47,12 @@ vertex = (((-1.0, -1.0,  1.0),
            (-1.0,  1.0,  1.0),
            (-1.0,  1.0, -1.0)))
 
-tex_files = ('output/gravel.png',
-             'output/just-waves.png',
-             'output/leaves.png',
-             'output/tiny-squares.png',
-             'output/wavy-dots.png',
-             'output/wheat.png')
+tex_files = ('gravel.png',
+             'just-waves.png',
+             'leaves.png',
+             'tiny-squares.png',
+             'wavy-dots.png',
+             'wheat.png')
 
 textures = []
 
@@ -63,7 +63,6 @@ def LoadTextures():
     
     for i, tex in enumerate(tex_files):
         ################################################################################
-        print tex
         glBindTexture(GL_TEXTURE_2D, textures[i])
         reader = png.Reader(filename=tex)
         w, h, pixels, metadata = reader.read_flat()
@@ -120,15 +119,14 @@ def DrawGLScene():
     glRotatef(yrot,0.0,1.0,0.0)           
     glRotatef(zrot,0.0,0.0,1.0) 
 
-    glBegin(GL_QUADS)              
-
     for i, face in enumerate(vertex):
         glBindTexture(GL_TEXTURE_2D, textures[i])
+        glBegin(GL_QUADS) 
         for vtx in face:
             glTexCoord2f((vtx[0] + 1) / 2, (vtx[1] + 1) / 2)
             glVertex3fv(vtx)    
-    
-    glEnd()
+        glEnd()
+
     #xrot = xrot + dx                # X rotation
     #yrot = yrot + dy                 # Y rotation
     #zrot = zrot + dz                 # Z rotation
