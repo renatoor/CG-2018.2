@@ -111,7 +111,7 @@ def DrawGLScene():
         while phi <= max_phi:
             glTexCoord2fv(rdt(phi, delta))
             glVertex3fv(s(delta, phi))
-            glTexCoord2fv(rdt(phi, delta))
+            glTexCoord2fv(rdt(phi, delta + inc))
             glVertex3fv(s(delta + inc, phi))
             phi += inc
         glTexCoord2fv(rdt(0.0, delta))
